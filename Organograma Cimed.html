@@ -1,0 +1,593 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Organograma Cimed</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: mapa em seis camadas, da tese ao resultado. Cada camada é um grupo de nós; conectores verticais mostram o que passa de uma camada à outra. */
+:root {
+  --bg: #f2f4f7;
+  --surface: #ffffff;
+  --surface-2: #e7ebf0;
+  --fg: #151a23;
+  --muted: #566070;
+  --line: #c6cdd7;
+  --accent: #f4c20d;
+  --on-accent: #151a23;
+  --accent-ink: #7a5800;
+  --risk: #a82f1d;
+  --risk-bg: #fbebe7;
+  --good: #1d6a49;
+  --good-bg: #e4f3ea;
+  --display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+  --body: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f131a;
+    --surface: #171c25;
+    --surface-2: #212834;
+    --fg: #eceff4;
+    --muted: #9ba5b4;
+    --line: #2d3644;
+    --accent: #f4c20d;
+    --on-accent: #151a23;
+    --accent-ink: #f4c20d;
+    --risk: #ff9179;
+    --risk-bg: #2b1a17;
+    --good: #73d3a5;
+    --good-bg: #13261d;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f131a;
+  --surface: #171c25;
+  --surface-2: #212834;
+  --fg: #eceff4;
+  --muted: #9ba5b4;
+  --line: #2d3644;
+  --accent: #f4c20d;
+  --on-accent: #151a23;
+  --accent-ink: #f4c20d;
+  --risk: #ff9179;
+  --risk-bg: #2b1a17;
+  --good: #73d3a5;
+  --good-bg: #13261d;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 56px;
+}
+a { color: var(--accent-ink); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
+ul { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3, p { margin: 0; }
+
+.wrap { max-width: 1120px; margin: 0 auto; }
+
+/* Cabeçalho */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+h1 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(30px, 5vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  margin-top: 10px;
+  max-width: 20ch;
+}
+.lede { margin-top: 16px; max-width: 64ch; color: var(--muted); font-size: 16px; }
+
+/* Camadas */
+.layer { margin-top: 0; }
+.layer-label {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.layer-label .n {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  background: var(--fg);
+  color: var(--bg);
+  font-weight: 500;
+  font-size: 12px;
+}
+.layer-label .t { color: var(--fg); font-weight: 500; }
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 64px;
+  position: relative;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+.link::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 6px;
+  border-left: 2px solid var(--line);
+}
+.link::after {
+  content: "";
+  position: absolute;
+  left: calc(50% - 5px);
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid var(--line);
+  margin-left: -1px;
+}
+.link span {
+  position: relative;
+  z-index: 1;
+  background: var(--bg);
+  padding: 2px 10px;
+}
+
+/* Nós */
+.node {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 18px 18px 20px;
+  min-width: 0;
+}
+.node h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.role {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  margin-bottom: 8px;
+}
+.node ul { margin-top: 12px; display: grid; gap: 8px; }
+.node li { position: relative; padding-left: 16px; color: var(--fg); }
+.node li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+}
+.node li b { font-weight: 600; }
+.note { margin-top: 12px; color: var(--muted); font-size: 14px; }
+
+/* Camada 0: tese */
+.thesis {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
+  border-radius: 0;
+  padding: clamp(22px, 4vw, 38px);
+  display: grid;
+  gap: 14px;
+}
+.thesis .role { color: var(--on-accent); opacity: 0.75; margin: 0; }
+.thesis blockquote {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(26px, 4.4vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  max-width: 24ch;
+}
+.thesis p { max-width: 62ch; font-size: 15px; }
+
+/* Árvore de quatro ramos */
+.tree {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  padding-top: 16px;
+}
+.tree::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12.5%;
+  right: 12.5%;
+  border-top: 2px solid var(--line);
+}
+.tree > .node::before {
+  content: "";
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  height: 16px;
+  border-left: 2px solid var(--line);
+}
+
+/* Camada 2: marcas */
+.brands {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+.brand {
+  background: var(--surface-2);
+  border-radius: 3px;
+  padding: 10px 12px;
+  min-width: 0;
+}
+.brand b { display: block; font-family: var(--display); font-size: 16px; font-weight: 700; }
+.brand span { display: block; color: var(--muted); font-size: 13px; line-height: 1.4; margin-top: 2px; }
+.rules {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+.rule { border-top: 2px solid var(--fg); padding-top: 10px; min-width: 0; }
+.rule b { display: block; font-family: var(--display); font-size: 16px; }
+.rule p { color: var(--muted); font-size: 14px; margin-top: 4px; }
+
+/* Camada 3: ciclo */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 22px;
+}
+.step { position: relative; }
+.step .idx {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent-ink);
+  display: block;
+  margin-bottom: 6px;
+}
+.step:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  right: -19px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 18px;
+  line-height: 1;
+}
+.step p { margin-top: 8px; font-size: 14px; color: var(--muted); }
+.feedback {
+  margin-top: 14px;
+  border: 1px dashed var(--line);
+  border-radius: 4px;
+  padding: 12px 16px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 14px;
+  align-items: baseline;
+}
+.feedback .role { margin: 0; }
+.feedback p { color: var(--muted); font-size: 14px; }
+
+/* Camada 4: base */
+.base {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+.base .node { background: var(--surface-2); border-color: transparent; }
+
+/* Camada 5: resultado e risco */
+.outcome { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 14px; }
+.outcome .good { border-top: 4px solid var(--good); }
+.outcome .risk { border-top: 4px solid var(--risk); }
+.outcome .good .role { color: var(--good); }
+.outcome .risk .role { color: var(--risk); }
+.figures { margin-top: 12px; display: grid; gap: 0; }
+.figures > div {
+  display: grid;
+  grid-template-columns: minmax(92px, 118px) 1fr;
+  gap: 14px;
+  align-items: baseline;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+.figures dt {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 19px;
+  font-variant-numeric: tabular-nums;
+  color: var(--good);
+}
+.figures dd { margin: 0; color: var(--fg); font-size: 14px; }
+.figures { margin-bottom: 0; }
+.outcome .risk li::before { background: var(--risk); }
+
+/* Rodapé */
+.sources { margin-top: 44px; border-top: 1px solid var(--line); padding-top: 18px; }
+.sources h2 { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.sources ul { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; }
+.sources p { margin-top: 12px; color: var(--muted); font-size: 13.5px; max-width: 70ch; }
+
+@media (max-width: 1000px) {
+  .tree { grid-template-columns: 1fr; padding-top: 0; }
+  .tree::before, .tree > .node::before { display: none; }
+  .steps { grid-template-columns: 1fr; gap: 26px; }
+  .step:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -24px; transform: translateX(-50%); }
+  .base { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rules { grid-template-columns: 1fr; }
+  .outcome { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  body { padding-block: 28px 40px; }
+  .base { grid-template-columns: 1fr; }
+  .feedback { grid-template-columns: 1fr; }
+  .figures > div { grid-template-columns: 1fr; gap: 2px; }
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Organograma · atualizado em 03/11/2026</div>
+    <h1>A estratégia de liderança exposta da Cimed</h1>
+    <p class="lede">Como a Cimed usa o rosto do CEO, da família e de parceiros para vender produtos de consumo. O mapa segue a ordem em que a lógica opera: tese, frentes de exposição, marcas, ciclo de lançamento, base industrial e resultado.</p>
+  </header>
+
+  <div style="height:36px"></div>
+
+  <!-- Camada 0 -->
+  <section class="layer" aria-labelledby="l0">
+    <div class="layer-label"><span class="n">0</span><span class="t" id="l0">Tese central</span></div>
+    <div class="node thesis">
+      <span class="role">João Adibe Marques · CEO desde 2012</span>
+      <blockquote>Produto sem cara não vende. O CEO é a cara da empresa.</blockquote>
+      <p>A convicção veio de décadas vendendo e visitando clientes pelo país. Adibe saiu dos bastidores e levou a empresa do modelo B2B para o B2C, falando direto com o consumidor final.</p>
+    </div>
+  </section>
+
+  <div class="link" aria-hidden="true"><span>a tese vira quatro frentes de exposição</span></div>
+
+  <!-- Camada 1 -->
+  <section class="layer" aria-labelledby="l1">
+    <div class="layer-label"><span class="n">1</span><span class="t" id="l1">Quem dá a cara</span></div>
+    <div class="tree">
+      <article class="node">
+        <span class="role">Frente A</span>
+        <h3>O CEO influenciador</h3>
+        <ul>
+          <li>Mais de <b>4 milhões</b> de seguidores no Instagram, mais TikTok. Apelido: "Tio João".</li>
+          <li>Publica a agenda completa do dia, da hora de acordar ao jantar.</li>
+          <li>Mostra rotina de vendas e valores da empresa.</li>
+          <li>Aparece em TV aberta, de novela da Globo ao Domingão.</li>
+        </ul>
+      </article>
+      <article class="node">
+        <span class="role">Frente B</span>
+        <h3>A Família Cimed</h3>
+        <ul>
+          <li>Karla Felmanas (VP), filhos e sobrinhos aparecem em casamentos, viagens e na fábrica.</li>
+          <li>Uniforme visual: moletom amarelo com bula nas costas.</li>
+          <li>Os briefings de marketing envolvem alguém da família, conforme o perfil do produto.</li>
+          <li>A sucessão é pública: a nova geração assume a área comercial.</li>
+        </ul>
+      </article>
+      <article class="node">
+        <span class="role">Frente C</span>
+        <h3>Influenciadores e parceiros</h3>
+        <ul>
+          <li><b>Toguro</b> como head de comunicação e rosto da Super, em troca de projeto, sem cachê. O sabor energético viralizou sem campanha.</li>
+          <li><b>Fred</b>, do Desimpedidos, na Copa de 2022.</li>
+          <li><b>Ana Castela</b> na Carmed da Boiadeira.</li>
+        </ul>
+      </article>
+      <article class="node">
+        <span class="role">Frente D</span>
+        <h3>Mídia de massa e megaeventos</h3>
+        <ul>
+          <li>Patrocínio da seleção: 2026 é a terceira Copa.</li>
+          <li><b>R$ 200 mi</b> em marketing na Copa; ação "Onde Tem Brasil, Tem Cimed" na Times Square.</li>
+          <li>Campanhas de TV que levam o consumidor à farmácia, como "compre 1, leve 2" e "Semanão de ofertas".</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <div class="link" aria-hidden="true"><span>a exposição empurra as supermarcas</span></div>
+
+  <!-- Camada 2 -->
+  <section class="layer" aria-labelledby="l2">
+    <div class="layer-label"><span class="n">2</span><span class="t" id="l2">Onde a exposição vira venda</span></div>
+    <div class="node">
+      <span class="role">Portfólio de consumo</span>
+      <h3>Supermarcas recebem metade da verba de marketing</h3>
+      <p class="note">O mix de receita é de 60% medicamentos e 40% consumo, e a meta é ampliar o consumo. Antes a Cimed aparecia em casa na doença; agora quer estar no dia a dia, do desodorante ao shampoo.</p>
+      <div class="brands">
+        <div class="brand"><b>Carmed</b><span>Hidratantes labiais e colabs, como a linha com a Fini</span></div>
+        <div class="brand"><b>Lavitan</b><span>Linha de vitaminas, presente na estratégia da Copa</span></div>
+        <div class="brand"><b>João e Maria</b><span>Linha infantil, com campanhas voltadas a bebês</span></div>
+        <div class="brand"><b>Super</b><span>Higiene bucal e desodorantes, com Toguro</span></div>
+        <div class="brand"><b>Mili</b><span>Skincare, posicionado entre acessíveis e premium</span></div>
+        <div class="brand"><b>Urso</b><span>Suplementos esportivos, meta de R$ 1 bi em dois anos</span></div>
+      </div>
+      <div class="rules">
+        <div class="rule"><b>Velocidade de tendência</b><p>Identificar uma tendência e transformá-la em produto rápido. Adibe usa a expressão "fast fashion".</p></div>
+        <div class="rule"><b>Preço competitivo</b><p>Produtos que chegam a custar um terço dos concorrentes diretos. A Mili é exceção deliberada.</p></div>
+        <div class="rule"><b>Categorias disputadas</b><p>Entra onde a competição é maior e ataca as fraquezas dos concorrentes.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="link" aria-hidden="true"><span>o ciclo se repete a cada lançamento</span></div>
+
+  <!-- Camada 3 -->
+  <section class="layer" aria-labelledby="l3">
+    <div class="layer-label"><span class="n">3</span><span class="t" id="l3">Ciclo de cada lançamento</span></div>
+    <div class="steps">
+      <article class="node step">
+        <span class="idx">PASSO 1</span>
+        <h3>Insight de fora para dentro</h3>
+        <p>Redes sociais e tendências mostram o que o consumidor quer. O marketing parte daí, não do laboratório.</p>
+      </article>
+      <article class="node step">
+        <span class="idx">PASSO 2</span>
+        <h3>Produto rápido</h3>
+        <p>A tendência vira item de linha com embalagem colorida e preço acessível.</p>
+      </article>
+      <article class="node step">
+        <span class="idx">PASSO 3</span>
+        <h3>Um rosto apresenta</h3>
+        <p>CEO, alguém da família ou um influenciador demonstra o produto no dia a dia.</p>
+      </article>
+      <article class="node step">
+        <span class="idx">PASSO 4</span>
+        <h3>Mídia de massa</h3>
+        <p>TV, streaming, redes e eventos ampliam o alcance, com a Copa como pico.</p>
+      </article>
+      <article class="node step">
+        <span class="idx">PASSO 5</span>
+        <h3>Venda no varejo</h3>
+        <p>As campanhas levam o consumidor ao ponto de venda, onde as ofertas fecham a conversão.</p>
+      </article>
+    </div>
+    <div class="feedback">
+      <span class="role">Ajuste</span>
+      <p>Quando uma ação desagrada o varejo, a Cimed recua. A plataforma que usava as redes para direcionar clientes ao varejo foi desfeita depois da reação dos varejistas.</p>
+    </div>
+  </section>
+
+  <div class="link" aria-hidden="true"><span>sustentado por uma base industrial e de capital</span></div>
+
+  <!-- Camada 4 -->
+  <section class="layer" aria-labelledby="l4">
+    <div class="layer-label"><span class="n">4</span><span class="t" id="l4">Base que sustenta o ritmo</span></div>
+    <div class="base">
+      <article class="node">
+        <span class="role">Produção</span>
+        <h3>Verticalização</h3>
+        <ul>
+          <li>Duas unidades industriais em Pouso Alegre (MG).</li>
+          <li>Nova planta no Nordeste em estudo para 2027.</li>
+        </ul>
+      </article>
+      <article class="node">
+        <span class="role">Território</span>
+        <h3>Pensamento regional</h3>
+        <ul>
+          <li>Segundo Adibe, foi um dos motivos de sair da 36ª para a 3ª posição em volume em dez anos.</li>
+        </ul>
+      </article>
+      <article class="node">
+        <span class="role">Capital</span>
+        <h3>Sócio e opções de caixa</h3>
+        <ul>
+          <li>Sócio global: GIC, fundo soberano de Cingapura.</li>
+          <li>Em out/2025, abertura de capital e M&amp;A seguiam em avaliação.</li>
+        </ul>
+      </article>
+      <article class="node">
+        <span class="role">Expansão</span>
+        <h3>Aquisições</h3>
+        <ul>
+          <li>R2M, de lenços umedecidos.</li>
+          <li>Fábrica de higiene bucal.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <div class="link" aria-hidden="true"><span>o que a estratégia entrega e o que ela custa</span></div>
+
+  <!-- Camada 5 -->
+  <section class="layer" aria-labelledby="l5">
+    <div class="layer-label"><span class="n">5</span><span class="t" id="l5">Resultado e atenção</span></div>
+    <div class="outcome">
+      <article class="node good">
+        <span class="role">Resultado</span>
+        <h3>O que os números mostram</h3>
+        <dl class="figures">
+          <div><dt>R$ 1 bi</dt><dd>Faturamento no 1º trimestre de 2026, alta de 20%, com Ebitda 26% maior.</dd></div>
+          <div><dt>R$ 10 bi</dt><dd>Meta de faturamento até 2030, no projeto Nova Era.</dd></div>
+          <div><dt>3º lugar</dt><dd>Posição em volume de vendas entre as farmacêuticas, vinda da 36ª em dez anos.</dd></div>
+          <div><dt>R$ 2 bi</dt><dd>Projeção de vendas na Copa de 2026, entre maio e julho.</dd></div>
+          <div><dt>150 mi</dt><dd>Visualizações da ação na Times Square, segundo a companhia.</dd></div>
+          <div><dt>1,4 bi</dt><dd>Visualizações da hashtag #carmedfini no TikTok.</dd></div>
+        </dl>
+      </article>
+      <article class="node risk">
+        <span class="role">Atenção</span>
+        <h3>Custos e riscos reportados</h3>
+        <ul>
+          <li><b>Dependência de uma pessoa.</b> Uma crise pessoal vira crise da marca. Adibe está no centro de uma investigação sobre obra em sua casa, sem desfecho.</li>
+          <li><b>Métricas.</b> A InvestNews aponta piora de métricas enquanto a empresa lidera o ranking de consumo à frente de P&amp;G e Nestlé.</li>
+          <li><b>Reação do mercado.</b> A contratação de Toguro gerou críticas no LinkedIn sobre o currículo para o cargo.</li>
+          <li><b>Exposição de funcionários.</b> Um vídeo do CEO abriu debate sobre limites e espontaneidade.</li>
+          <li><b>Tentativas desfeitas.</b> A plataforma de direcionamento ao varejo.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <footer class="sources">
+    <h2>Fontes</h2>
+    <ul>
+      <li><a href="https://forbes.com.br/forbes-money/2026/05/o-brasileiro-gosta-de-comprar-de-quem-bota-cara-diz-joao-adibe-da-cimed/" target="_blank" rel="noopener">Forbes Brasil, mai/2026</a></li>
+      <li><a href="https://exame.com/negocios/toguro-com-antirressaca-e-nova-fabrica-os-novos-planos-da-cimed-para-2026/" target="_blank" rel="noopener">Exame, fev/2026</a></li>
+      <li><a href="https://investnews.com.br/negocios/carmed-vs-genericos-cimed-reduz-margem/amp/" target="_blank" rel="noopener">InvestNews, 2026</a></li>
+      <li><a href="https://mercadoeconsumo.com.br/15/10/2026/industria/a-cimed-dos-proximos-50-anos-precisa-olhar-para-mercados-muito-maiores-diz-joao-adibe/amp/" target="_blank" rel="noopener">Mercado&amp;Consumo, out/2026</a></li>
+      <li><a href="https://mercadoeconsumo.com.br/04/06/2025/noticias-varejo/joao-adibe-nao-adianta-querer-ser-uma-empresa-nacional-sem-um-pensamento-regional/amp/" target="_blank" rel="noopener">Mercado&amp;Consumo, Vtex Day 2025</a></li>
+      <li><a href="https://www.infomoney.com.br/?p=3196866" target="_blank" rel="noopener">InfoMoney, Toguro</a></li>
+      <li><a href="https://www.bloomberglinea.com.br/negocios/familia-da-cimed-alavanca-vendas-e-se-torna-bilionaria-com-impulso-de-redes-sociais/" target="_blank" rel="noopener">Bloomberg Línea</a></li>
+      <li><a href="https://neofeed.com.br/blog/home/na-copa-do-catar-a-torcida-de-joao-adibe-para-levar-a-cimed-a-outro-patamar/" target="_blank" rel="noopener">NeoFeed</a></li>
+      <li><a href="https://timesbrasil.com.br/empresas-e-negocios/joao-adibe-ceo-da-cimed-quem-e-o-executivo-no-centro-da-farmaceutica/" target="_blank" rel="noopener">Times Brasil</a></li>
+      <li><a href="https://www.portalin.com.br/?p=789201" target="_blank" rel="noopener">Portal IN, Times Square</a></li>
+    </ul>
+    <p>Mapa montado a partir de reportagens públicas. Metas e números de alcance são declarados pela própria Cimed.</p>
+  </footer>
+</div>
+
+</body></html>
